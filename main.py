@@ -10,18 +10,20 @@ plt = platform.system()
 if plt == 'Linux':
     pathlib.WindowsPath = pathlib.PosixPath
 
-app = FastAPI()
+app = FastAPI(
+    title="detect",
+    version=0.1,
+    root_path="/"
+)
 # Declare variables
 path = Path("./")
 learn_inf = load_learner(path/"export.pkl", cpu=True)
 image_path = "skin_type/Test/"
 
 
-@app.get("/")
+@app.get("/", tags=["FastAPI"])
 def root():
-    return {
-        "response": ""
-    }
+    return {"message": "hello world again"}
 
 
 @app.post("/")
